@@ -5,6 +5,7 @@ Here is what the config should look like
 <p> Filename : config.json </p>
 
 ```json
+{
   "token" : "bot token",
   "prefix" : "!",
   "owner" : "141040591550021632",

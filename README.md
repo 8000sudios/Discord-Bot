@@ -1,4 +1,4 @@
-Bot config not added due to bot token.
+Bot config not added due to bot token. <br>
 Here is what the config should look like:
 
 <p> Filename : config.json </p>

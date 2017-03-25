@@ -3,7 +3,7 @@
 
 const commando = require('discord.js-commando');
 const config = require("../../config.json");
-const pow = require("../../power.js")
+const util = require("../../util.js")
 const requirePower = 2;
 
 class ban extends commando.Command {
@@ -18,11 +18,11 @@ class ban extends commando.Command {
   }
 
   async run(message, args) {
-    let power = pow.getPower(message.member, message.guild);
+    let power = util.getPower(message.member, message.guild);
     if (requirePower <= power) {
       if (message.mentions.users.first()) {
         let ban = message.guild.member(message.mentions.users.first());
-        let banPower = pow.getPower(ban, message.guild);
+        let banPower = util.getPower(ban, message.guild);
         if (power > banPower) {
           if (ban.bannable == false) {
             if(ban.id == message.guild.ownerID) {

@@ -3,7 +3,7 @@
 
 const commando = require('discord.js-commando');
 const config = require("../../config.json");
-const pow = require("../../power.js")
+const util = require("../../util.js")
 
 
 var power = 0;
@@ -25,12 +25,12 @@ class kick extends commando.Command {
     power = 0;
     userPower = 0;
 
-    power = pow.getPower(message.member, message.guild);
+    power = util.getPower(message.member, message.guild);
 
     if (power >= rPower) {
       if (message.mentions.users.first()) {
         let kick = message.guild.member(message.mentions.users.first());
-        userPower = pow.getPower(kick, message.guild);
+        userPower = util.getPower(kick, message.guild);
         if (power > userPower) {
           if(kick.kickable == false) {
             if(kick.id == message.guild.ownerID) {

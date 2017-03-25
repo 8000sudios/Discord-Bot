@@ -7,7 +7,7 @@ Here is what the config should look like:
 {
   "token" : "bot token",
   "prefix" : "!",
-  "owner" : "141040591550021632",
+  "owner" : "owner id",
   "roles" : [["Mod", 3], ["Admin", 4], ["Final Boss", 5]]
 }
 ```

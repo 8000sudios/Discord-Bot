@@ -1,3 +1,6 @@
+// NO is bot check
+// NO is guild owner check
+
 const commando = require('discord.js-commando');
 const config = require("../../config.json");
 const pow = require("../../power.js")
@@ -13,8 +16,8 @@ class kick extends commando.Command {
       name: 'kick',
       group: 'administrative',
       memberName: 'kick',
-      description: 'replys with Pong ',
-      aliases: ['k']
+      description: 'kicks a user',
+      //aliases: ['k']
     });
   }
 
@@ -22,39 +25,23 @@ class kick extends commando.Command {
     power = 0;
     userPower = 0;
 
-
-message.reply(pow.getPower(message.member, message.guild));
     //Calculate user power
-    for (var x = 0; x < config.roles.length; x++) {
-      if (message.guild.roles.exists("name", config.roles[x][0])) {
-        if (message.member.roles.has(message.guild.roles.find("name", config.roles[x][0]).id)) {
-          if (config.roles[x][1] > power) {
-            power = config.roles[x][1];
-          }
-        }
-      }
-    }
+    power = pow.getPower(message.member, message.guild);
 
     if (power >= rPower) {
       if (message.mentions.users.first()) {
-        for (var x = 0; x < config.roles.length; x++) {
-          if (message.guild.roles.exists("name", config.roles[x][0])) {
-            if (message.guild.member(message.mentions.users.first()).roles.has(message.guild.roles.find("name", config.roles[x][0]).id)) {
-              if (config.roles[x][1] > userPower) {
-                userPower = config.roles[x][1];
-              }
-            }
-          }
-        }
-
+        userPower = pow.getPower(message.guild.member(message.mentions.users.first()), message.guild);
         if (power > userPower) {
-          message.guild.member(message.mentions.users.first()).kick();
-          message.reply('User ' + message.mentions.users.first() + ' has been kicked.');
+          let kick = message.guild.member(message.mentions.users.first());
+          if(kick.kickable == false) {
+            message.reply("Please contact server owner {bot roles might be bellow user role}");
+          } else {
+            kick.kick();
+            message.reply('User ' + message.mentions.users.first() + ' has been kicked.');
+          }
         } else return message.reply("You dont have permission to kick this user.")
       } else return message.reply("Please mention a user")
-    } else {
-      message.reply("You dont have permission for this command.");
-    }
+    } else return message.reply("You dont have permission for this command.");
   }
 }
 

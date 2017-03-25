@@ -1,5 +1,8 @@
 const commando = require('discord.js-commando');
 const config = require("../../config.json");
+const pow = require("../../power.js")
+
+
 var power = 0;
 var rPower = 2;
 var userPower = 0;
@@ -19,6 +22,8 @@ class kick extends commando.Command {
     power = 0;
     userPower = 0;
 
+
+message.reply(pow.getPower(message.member, message.guild));
     //Calculate user power
     for (var x = 0; x < config.roles.length; x++) {
       if (message.guild.roles.exists("name", config.roles[x][0])) {
@@ -51,7 +56,6 @@ class kick extends commando.Command {
       message.reply("You dont have permission for this command.");
     }
   }
-
 }
 
 module.exports = kick;

@@ -25,17 +25,17 @@ class kick extends commando.Command {
     power = 0;
     userPower = 0;
 
-    //Calculate user power
     power = pow.getPower(message.member, message.guild);
 
     if (power >= rPower) {
       if (message.mentions.users.first()) {
-        userPower = pow.getPower(message.guild.member(message.mentions.users.first()), message.guild);
+        let kick = message.guild.member(message.mentions.users.first());
+        userPower = pow.getPower(kick, message.guild);
         if (power > userPower) {
-          let kick = message.guild.member(message.mentions.users.first());
           if(kick.kickable == false) {
-            message.reply("Please contact server owner {bot roles might be bellow user role}");
-          } else {
+            if(kick.id == message.guild.ownerID) {
+              return message.reply("You cannot kick the server owner.");
+            } else return message.reply("You a) cannot kick the bot OR b) the bot does not have the correct permissions to kick this person (contact " + message.guild.owner + ")");
             kick.kick();
             message.reply('User ' + message.mentions.users.first() + ' has been kicked.');
           }

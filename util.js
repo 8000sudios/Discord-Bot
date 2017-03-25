@@ -1,4 +1,5 @@
 const config = require("./config.json");
+const commando = require('discord.js-commando');
 
 module.exports = {
 
@@ -14,5 +15,9 @@ module.exports = {
       }
     }
     return temp;
+  },
+
+  log: function(client, user, action, against) {
+    return false;
   }
 }

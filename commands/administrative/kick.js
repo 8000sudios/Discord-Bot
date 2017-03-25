@@ -1,6 +1,3 @@
-// NO is bot check
-// NO is guild owner check
-
 const commando = require('discord.js-commando');
 const config = require("../../config.json");
 const util = require("../../util.js")

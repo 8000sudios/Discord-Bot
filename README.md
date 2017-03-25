@@ -1,8 +1,10 @@
-Bot config not added due to bot token 
+Bot config not added due to bot token
+
 Here is what the config should look like
 
 <p> Filename : config.json </p>
-```jason
+
+```json
   "token" : "bot token",
   "prefix" : "!",
   "owner" : "141040591550021632",

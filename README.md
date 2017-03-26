@@ -9,5 +9,6 @@ Here is what the config should look like:
   "prefix" : "!",
   "owner" : "owner id",
   "roles" : [["Mod", 3], ["Admin", 4], ["Final Boss", 5]]
+  "logID" : "<channel ID>"
 }
 ```

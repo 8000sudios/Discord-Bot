@@ -42,7 +42,7 @@ class ban extends commando.Command {
             ban.ban(d);
             util.log(message, message.member, "banned", ban, r);
             if(r != "") {
-              return message.reply("User " + message.mentions.users.first() + " has been banned. For reason: " + "<" + r + ">" )
+              return message.reply("User " + message.mentions.users.first() + " has been banned. For reason: " + r)
             } else {
               return message.reply("User " + message.mentions.users.first() + " has been banned.");
             }

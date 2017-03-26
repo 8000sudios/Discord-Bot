@@ -19,7 +19,15 @@ class test extends commando.Command {
   }
 
   async run(message, args) {
-    message.reply(args);
+    let arr = args.split('-');
+
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i].slice(0, 1) == "r" || arr[i].slice(0, 1) == "R") {
+        message.reply(arr[i].slice(2));
+      } else if (arr[i].slice(0, 1) == "d" || arr[i].slice(0, 1) == "D") {
+        message.reply(arr[i].slice(2));
+      }
+    }
   }
 }
 

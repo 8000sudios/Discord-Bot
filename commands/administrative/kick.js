@@ -21,7 +21,8 @@ class kick extends commando.Command {
   async run(message, args) {
     power = 0;
     userPower = 0;
-
+    let r = "";
+    
     power = util.getPower(message.member, message.guild);
 
     if (power >= rPower) {
@@ -33,8 +34,18 @@ class kick extends commando.Command {
             if(kick.id == message.guild.ownerID) {
               return message.reply("You cannot kick the server owner.");
             } else return message.reply("You a) cannot kick the bot OR b) the bot does not have the correct permissions to kick this person (contact " + message.guild.owner + ")");
+          } else {
+            let arr = args.split('-');
+            for (var i = 1; i < arr.length; i++) {
+              if (arr[i].slice(0, 1) == "r" || arr[i].slice(0, 1) == "R") {
+                r = arr[i].slice(2);
+              }
+            }
             kick.kick();
-            message.reply('User ' + message.mentions.users.first() + ' has been kicked.');
+            util.log(message, message.member, "kicked", kick, r);
+            if (r != "") {
+              message.reply('User ' + message.mentions.users.first() + ' has been kicked. For reason: ' + r);
+            } else return message.reply('User ' + message.mentions.users.first() + ' has been kicked.');
           }
         } else return message.reply("You dont have permission to kick this user.")
       } else return message.reply("Please mention a user")

@@ -20,6 +20,6 @@ module.exports = {
 
   log: function(message, user, action, against, reason) {
     let time = moment().format('MMMM Do YYYY, h:mm a');
-    message.guild.channels.get(config.logID).sendMessage(time + user + " has " + action + " " + against + " because " + reason);
+    message.guild.channels.get(config.logID).sendMessage(time + ": " + user + " has " + action + " " + against + " for reason: " + reason);
   }
 }

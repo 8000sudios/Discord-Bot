@@ -1,5 +1,6 @@
 const config = require("./config.json");
 const commando = require('discord.js-commando');
+const moment = require('moment');
 
 module.exports = {
 
@@ -17,7 +18,8 @@ module.exports = {
     return temp;
   },
 
-  log: function(client, user, action, against) {
-    return false;
+  log: function(message, user, action, against, reason) {
+    let time = moment().format('MMMM Do YYYY, h:mm a');
+    message.guild.channels.get(config.logID).sendMessage(time + user + " has " + action + " " + against + " because " + reason);
   }
 }

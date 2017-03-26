@@ -19,6 +19,8 @@ class test extends commando.Command {
   }
 
   async run(message, args) {
+    util.log(message, "im a user LOL", "action", "against", "reason");
+
     let arr = args.split('-');
 
     for (var i = 1; i < arr.length; i++) {
